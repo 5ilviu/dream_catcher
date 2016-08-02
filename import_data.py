@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 
 
 def get_img(image='./res/cs_1_1.jpg'):
-    f = misc.imread(image)
-    return f.reshape(24300) / f.max()
+    f = misc.imread(image).astype(float)
+    return ((f - f.min())/(f.max() - f.min())).reshape(24300)
 
 
 def show_img(f):
-    plt.show()
     plt.imshow(f)
+    plt.show()
 
-# print show_img(get_img())
+
+if __name__ == '__main__':
+    print show_img(get_img('./res/cs_2_1_1.jpg').reshape(90, 90, 3))
 
 # from sklearn.metrics import confusion_matrix
 # y_true = [2, 0, 2, 2, 0, 1]

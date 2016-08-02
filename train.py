@@ -28,7 +28,7 @@ def get_index():
 
 def updatefig(*args):
     global visual
-    mat = np.reshape(visual[get_index()], (3, 90, 90))
+    mat = np.reshape(visual[get_index()], (90, 90, 3))
     im.set_array(mat)
     return im,
 
@@ -36,19 +36,20 @@ def updatefig(*args):
 if __name__ == '__main__':
     global visual
     data = import_data.get_img()
-    data1 = import_data.get_img('./res/cs_4_1_8.jpg')
+    data1 = import_data.get_img('./res/cs_4_1_1.jpg')
+    data2 = import_data.get_img('./res/cs_2_1_1.jpg')
     # data = np.resize(data, (50000, 784))
     # perm = permutation(50000)
     # data = data[perm]
-    data = np.array([data, data1, data, data1])
+    data = np.array([data, data1, data2])
     rbm = alt_rbm.RBM(24300, 200, learning_rate=0.1)
-    rbm.train(data[0:4], 10)
+    rbm.train(data[0:4], 200)
     f = open("matrix{}".format(datetime.datetime.now()), "wb")
     np.save(f, rbm.weights)
     # good ones are 6 data[6] >
     initial = np.random.rand(201)
-    im = plt.imshow(np.random.rand(28, 28), cmap=plt.get_cmap('gray'), animated=True)
-    visual = rbm.daydream(2, initial)
+    im = plt.imshow(np.random.rand(90, 90, 3), cmap=plt.get_cmap('gray'), animated=True)
+    visual = rbm.daydream(10, initial)
 
     ani = animation.FuncAnimation(fig, updatefig, interval=2000, blit=True)
     plt.show()
