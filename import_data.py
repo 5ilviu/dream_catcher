@@ -1,5 +1,6 @@
 from os import listdir
 from os.path import join
+import numpy as np
 from scipy import misc
 import matplotlib.pyplot as plt
 
@@ -7,21 +8,30 @@ data_path = './res/{}/{}/'
 
 
 def get_img(image='./res/1/cs_1_1.jpg'):
-    f = misc.imread(image).astype(float)
+    f = misc.imread(image).astype(dtype=float)
     return ((f - f.min())/(f.max() - f.min())).reshape(24300)
 
 
 def get_dataset(nature='train'):
+    data = []
+    label = []
+    i = 0
     for clazz in range(0, 10):
         path = data_path.format(nature, clazz)
         for f in listdir(path):
-            print join(path, f)
+            # print join(path, f)
             img = get_img(join(path, f))
-            show_img(f)
+            data.append(img)
+            label.append(clazz)
+            i += 1
+    print 'read {} {} images'.format(nature, i)
+    return [np.array(data), np.array(label)]
+
+
 
 
 def show_img(f):
-    plt.imshow(f)
+    plt.imshow(f.reshape(90, 90, 3))
     plt.show()
 
 
