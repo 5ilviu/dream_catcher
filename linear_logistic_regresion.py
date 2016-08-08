@@ -1,19 +1,18 @@
-from numpy.random.mtrand import permutation
+from sklearn import linear_model
 
-from sklearn.neighbors import KNeighborsClassifier
+from numpy.random.mtrand import permutation
 
 import dirty_importer
 import import_data
 
 if __name__ == '__main__':
-    global visual
     dataset = dirty_importer.get_dataset()
     data = dataset[0]
     label = dataset[1]
     perm = permutation(len(data))
     data = data[perm]
     label = label[perm]
-    clf = KNeighborsClassifier(n_neighbors=1)
+    clf = linear_model.LogisticRegression(C=10.0)
     clf.fit(data, label)
 
     testset = dirty_importer.get_dataset('test')

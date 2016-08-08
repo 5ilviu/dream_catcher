@@ -1,22 +1,20 @@
 from numpy.random.mtrand import permutation
-
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import SGDClassifier
 
 import dirty_importer
 import import_data
 
 if __name__ == '__main__':
-    global visual
     dataset = dirty_importer.get_dataset()
     data = dataset[0]
     label = dataset[1]
     perm = permutation(len(data))
     data = data[perm]
     label = label[perm]
-    clf = KNeighborsClassifier(n_neighbors=1)
+    clf = SGDClassifier(loss="log", penalty="l1")
     clf.fit(data, label)
 
-    testset = dirty_importer.get_dataset('test')
+    testset = import_data.get_dataset('test')
     data = testset[0]
     label = testset[1]
     perm = permutation(len(data))
