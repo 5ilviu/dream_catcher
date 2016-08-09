@@ -32,5 +32,5 @@ sklearn
 
 ## Dataset
 
-Data is saved in the `res` folder and it's splitted in `test` and `train` data, and each of those are splitted into classes numbered from `1` to `9`.
+Data is saved in the `res` folder and it's splitted in `test` and `train` data, and each of those are splitted into classes numbered from `0` to `9`.
 Just add your pictures into the current existing classes.
