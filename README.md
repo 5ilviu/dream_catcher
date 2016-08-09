@@ -1,5 +1,23 @@
 # dream_catcher
 
+                       _.---._
+                     .' . .'  '.
+                    /   .'. .'.'\
+                   | `.'  .'.'  .|
+                   |.' '.'.' `.' |
+                    \ .'.`. .' `/
+                     '.'  .`. .'
+                       `;---;'
+                        :   :
+                        :   :
+                        :  /|\
+                       /|\ /|\
+                       /|\ /|\
+                       /|\ /|\
+                       /|\  '
+                       /|\
+                        '
+
 Test project to find the best way of clasifying specific objects.
 
 ## Requirements
